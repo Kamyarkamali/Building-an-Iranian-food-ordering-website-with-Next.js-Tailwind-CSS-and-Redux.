@@ -3,7 +3,11 @@ import Link from "next/Link"
 import Image from 'next/image';
 
 //Labale
-import resturan from "../../public/assets/restoran.jpg"
+import resturan from "../../public/assets/restoran.jpg";
+import namad from "../../public/assets/namad.png"
+import instagram from "../../public/icons/instagram.png"
+import github from "../../public/icons/githoub.png"
+import linkdin from "../../public/icons/linkdin.png"
 
 ///Icons
 import {BsBag} from "react-icons/bs"
@@ -39,7 +43,7 @@ function Layout({children}) {
   return (
     <>
     <header>
-      <div className='flex justify-between p-[12px] items-center bg-orange-500 max-w-[1419px] mx-auto'>
+      <div className='flex justify-between  p-[12px] items-center bg-orange-500 max-w-[1419px] mx-auto'>
         <div className='flex flex-col items-center'>
           <p className='text-2xl text-white'>با ما در تماس باشید</p>
           <p className='font-bold py-3 text-yellow-300 text-xl'>021-44444444</p>
@@ -60,7 +64,7 @@ function Layout({children}) {
         </div>}
         <div className='relative'>
           {!isMobile ?<Link href={"/"}>
-          <Image src={resturan} width={60} height={60} className='rounded-[50%] object-cover'/>
+          <Image src={resturan} alt='resurant' width={60} height={60} className='rounded-[50%] object-cover'/>
           </Link> : <BsList onClick={openHamdeler} size={30} className='cursor-pointer'/>}
           {isMobile&&<div className={open ? 'absolute bg-orange-600 p-[4px] text-white font-bold right-[-14px] rounded-xl w-[200px] h-screen duration-300' : "absolute bg-orange-600 p-[4px] text-white font-bold right-[700px] rounded-xl w-[200px] h-screen duration-300"}>
             <ul className='flex flex-col items-center p-4'>
@@ -88,11 +92,53 @@ function Layout({children}) {
           </div>}
         </div>
       </div>
+      {!isMobile&&<div className='bg-yellow-400 text-white font-bold p-1'>
+        <ul className='flex justify-between'>
+          <li className='cursor-pointer hover:scale-105 duration-300'>تماس با ما</li>
+          <li className='cursor-pointer hover:scale-105 duration-300'>درباره ما</li>
+          <li className='cursor-pointer hover:scale-105 duration-300'>غذاها</li>
+          <li className='cursor-pointer hover:scale-105 duration-300'>صفحه اصلی</li>
+        </ul>
+      </div>}
     </header>
 
-      <div className='min-h-[900px]'>{children}</div>
+      <div className='min-h-[2000px]'>{children}</div>
 
-    <div>footer</div>
+    <div className='bg-[#eeee] p-3 flex justify-between'>
+      <div className='py-[4rem]'>
+        <Image src={namad} alt='namad' width={70} height={30}/>
+      </div>
+      <div>
+          <h1 className='text-xl'>خدمات مشتریان</h1>
+          <div className='flex flex-col items-center gap-3'>
+            <span>درباره ما</span>
+            <span>تماس با ما</span>
+            <span>تماس با ما</span>
+            <span>ثبت شکایت</span>
+            <span>سوالات متداول</span>
+            <span>قوانین</span>
+          </div>
+      </div>
+
+      <div className='flex flex-col items-center text-sm gap-3'>
+       <span>غذاها</span>
+        <span>آشپزان</span>
+        <span>سفارشات شرکتی</span>
+        <span>عضوی از ما باشید</span>
+        <span>وبلاگ</span>  
+        <span className='bg-[#333] rounded-lg p-3 text-white font-bold'>
+          <button>رستوران در موبایل</button>
+        </span>
+      <div className='flex items-center gap-3'>
+        <Image width={30} height={40} alt='instagram' src={instagram}/>
+        <Image width={30} height={40} alt='linkdin' src={linkdin}/>
+        <Image width={30} height={40} alt='githob' src={github}/>
+      </div>
+      </div>
+    </div>
+    <div className='bg-gray-500'>
+      <p className='text-center text-white text-bold text-xl p-3'>این صفحه صرفا جهت دیدن نمونه کار توسط اینجانب طراحی شده</p>
+    </div>
     </>
   )
 }

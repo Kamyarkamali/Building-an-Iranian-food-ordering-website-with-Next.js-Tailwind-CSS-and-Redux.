@@ -1,2 +1,11 @@
 
 @import 'tailwindcss/tailwind.css';
+
+@font-face{
+    font-family: "vazirnarin";
+    src: url("/my-next-app/fonts/ttf/Vazirmatn-Medium.ttf");
+}
+
+body{
+    font-family:"vazirnarin",sans-serif ;
+}
