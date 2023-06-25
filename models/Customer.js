@@ -1,30 +1,36 @@
-import {Schema,model,models} from "mongoose";
+import mongoose from "mongoose";
+
+const { Schema, model, models } = mongoose;
 
 
-const Coustomer=await Schema({
-    name:{
-        type:String,
-        required:true,
-        minLength:1
+const CustomerSchema = new Schema({
+    name: {
+        type: String,
+        required: true,
+        minLength: 1
     },
-    lastName:{
-        type:String,
-        required:true,
-        minLength:1
+    lastName: {
+        type: String,
+        required: true,
+        minLength: 1
     },
-    email:{
-        type:String,
-        required:true,
-        minLength:1
+    email: {
+        type: String,
+        required: true,
+        minLength: 1
     },
-    createedAt:{
-        type:Date,
-        default:()=>Date.now(),
+    password: {
+        type: Number
     },
-})
+    confirmPassword: {
+        type: Number
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
+});
 
+const Customer = models.Customer || model("users", CustomerSchema);
 
-const User=model.User || model("User",Coustomer)
-
-
-export default User;
+export default Customer;

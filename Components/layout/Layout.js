@@ -50,9 +50,10 @@ function Layout({children}) {
         </div>
         <div>
           {!isMobile&& (
-            <div className='flex gap-4 text-white font-bold'> 
-              <button className='bg-green-600 p-1 rounded-lg'>ورود</button>
-              <button className='bg-blue-600 p-1 rounded-lg'>ثبت نام</button>
+            <div className='flex gap-4 text-white font-bold'>
+              <Link href={"/singup"}>
+              <button className='bg-red-500 p-2 rounded-lg font-bold text-white'>ثبت نام / ورود</button>
+              </Link> 
             </div>
           )
           
