@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Link from "next/Link"
-import Image from 'next/image';
+import Image from 'next/Image';
 
 //Labale
 import resturan from "../../public/assets/restoran.jpg";
@@ -16,9 +16,17 @@ import {FiInstagram} from "react-icons/fi";
 import {IoLogoLinkedin} from "react-icons/io"
 import { FiMapPin } from 'react-icons/fi';
 
+///Redux
+import { useSelector } from 'react-redux';
+
+
 function Layout({children}) {
   const [isMobile,setIsMobile]=useState(false);
   const [open,setIsOpen]=useState(false);
+
+  ///redux
+  const shop=useSelector((state)=>state.cart.shooping)
+
 
   useEffect(()=>{
     const handelres=()=>{
@@ -60,8 +68,10 @@ function Layout({children}) {
           }
         </div>
         {!isMobile&&<div className='relative'>
+          <Link href={"/shoop"}>
           <BsBag size={20} color='blue'/>
-          <span className='absolute top-[-10px] bg-red-500 p-[2px] h-[27px] w-[15px] text-center rounded-[50%] right-[-11px] text-white'>0</span>
+          <span className='absolute top-[-10px] bg-red-500 p-[2px] h-[27px] w-[15px] text-center rounded-[50%] right-[-11px] text-white'>{shop.length}</span>
+          </Link>
         </div>}
         <div className='relative'>
           {!isMobile ?<Link href={"/"}>
@@ -69,9 +79,13 @@ function Layout({children}) {
           </Link> : <BsList onClick={openHamdeler} size={30} className='cursor-pointer'/>}
           {isMobile&&<div className={open ? 'absolute bg-orange-600 p-[4px] text-white font-bold right-[-14px] rounded-xl w-[200px] h-screen duration-300' : "absolute bg-orange-600 p-[4px] text-white font-bold right-[700px] rounded-xl w-[200px] h-screen duration-300"}>
             <ul className='flex flex-col items-center p-4'>
+              <Link href={"/"}>
               <li className='py-6 hover:scale-105 duration-300 cursor-pointer'>صفحه اصلی</li>
+              </Link>
               <li className='py-6 hover:scale-105 duration-300 cursor-pointer'>سبد خرید</li>
+              <Link href={"/foods"}>
               <li className='py-6 hover:scale-105 duration-300 cursor-pointer'>تمام غذاها</li>
+              </Link>
               <li className='py-6 hover:scale-105 duration-300 cursor-pointer'>درباره ما</li>
               <li className='py-6 hover:scale-105 duration-300 cursor-pointer'> تماس با ما</li>
             </ul>
@@ -97,13 +111,17 @@ function Layout({children}) {
         <ul className='flex justify-between'>
           <li className='cursor-pointer hover:scale-105 duration-300'>تماس با ما</li>
           <li className='cursor-pointer hover:scale-105 duration-300'>درباره ما</li>
+          <Link href={"/foods"}>
           <li className='cursor-pointer hover:scale-105 duration-300'>غذاها</li>
+          </Link>
+          <Link href={"/"}>
           <li className='cursor-pointer hover:scale-105 duration-300'>صفحه اصلی</li>
+          </Link>
         </ul>
       </div>}
     </header>
 
-      <div className='min-h-[2000px]'>{children}</div>
+      <div className='min-h-[1000px]'>{children}</div>
 
     <div className='bg-[#eeee] p-3 flex justify-between'>
       <div className='py-[4rem]'>

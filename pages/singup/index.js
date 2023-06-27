@@ -56,7 +56,6 @@ function index() {
       <img className='w-[30px]' src='https://cdn-icons-png.flaticon.com/512/25/25231.png' alt='/'/>
       <button onClick={singupHandelr}>GitHoub ورود از طریق</button>
       </div>
-      <button onClick={signOutHandeler}>خروج</button>
     </div>
   )
 }
