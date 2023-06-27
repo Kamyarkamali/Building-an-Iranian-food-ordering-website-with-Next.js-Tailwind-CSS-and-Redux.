@@ -6,6 +6,8 @@ function ShoopingPage({data}) {
     console.log(data)
     console.log();
     const {name,id,price,url}=data
+
+    
   return (
     <div>
         <div className='border-4 p-6'>
@@ -15,7 +17,7 @@ function ShoopingPage({data}) {
             <div className='flex justify-center gap-1 py-2'>
                 <span className='text-md font-bold text-orange-500'>ریال</span>
                 <div className='flex justify-center'>
-                <span className='text-md font-bold text-orange-500'>{price}</span>
+                <span className='text-md font-bold text-orange-500'>{formattedPrice}</span>
                 </div>
             </div>
             <div className='flex flex-col gap-3 text-white font-bold '>

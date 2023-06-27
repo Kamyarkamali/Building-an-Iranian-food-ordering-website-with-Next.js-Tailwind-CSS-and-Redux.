@@ -2,6 +2,9 @@ import React from 'react'
 import Image from "next/Image"
 import Link from "next/Link"
 
+
+
+
 function FoodsPage(props) {
   const {id,name,price,url}=props
   return (

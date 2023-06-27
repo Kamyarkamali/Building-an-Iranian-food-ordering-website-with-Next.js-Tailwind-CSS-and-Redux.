@@ -7,27 +7,36 @@ const CartSlice=createSlice({
     name:"cart",
     initialState:{
         shooping:[],
-        items:foods
     },
     reducers:{
         addItem:(state,action)=>{
-            const {id}=action.payload
-            state.shooping.push({...action.payload,selected:true})
-            const itemIndex=state.items.findIndex((item)=>item.id===id)
-
-            if(itemIndex!==-1){
-                state.items[itemIndex].selected=true
-            }
+           const itemIncart=state.shooping.find((item)=>item.id===action.payload.id)
+           if(itemIncart){
+            itemIncart.quantity++
+           }else{
+            state.shooping.push({...action.payload,quantity:1})
+           }
         },
+
+        incrementQuantity:(state,action)=>{
+            const item=state.shooping.find((item)=>item.id===action.payload);
+            if(item){
+                item.quantity++
+            }   
+        },
+
         removeItem:(state,action)=>{
-            const index=state.items.findIndex(item=>item.id===action.payload)
+            const index=state.shooping.findIndex(item=>item.id===action.payload)
             if(index!==-1){
-                state.items.splice(index,1)
+                state.shooping.splice(index,1)
             }
         }
     }
 })
 
+function calculateTotalPrice(shoppingitems){
+    return shoppingitems.reduce((total,item)=>total+item.price*item.quantity,0)
+}
 
 export default CartSlice.reducer
-export const {addItem,removeItem}=CartSlice.actions
+export const {addItem,removeItem,incrementQuantity}=CartSlice.actions

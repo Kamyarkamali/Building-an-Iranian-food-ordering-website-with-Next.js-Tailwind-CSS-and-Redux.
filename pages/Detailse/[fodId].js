@@ -2,27 +2,39 @@ import React from 'react'
 import {useRouter} from "next/router"
 import { useDispatch, useSelector } from 'react-redux';
 import Image from 'next/Image';
+
 import foods from '../../Components/data';
 
 import {AiOutlineArrowLeft} from "react-icons/ai";
 import Link from 'next/Link';
 
 //Redux
-import { addItem,removeItem } from '../../Components/redux/fechuare/foodsSlice';
+import { addItem,removeItem ,incrementQuantity} from '../../Components/redux/fechuare/foodsSlice';
 
 function Detailse() {
-  const dispatch=useDispatch()
 
+  const dispatch=useDispatch()
 
   const router=useRouter();
   const {fodId}=router.query
+
+  if(!fodId){
+    return <h1>مقداری وجود ندارد</h1>
+  }
+  
   
   const foodsId=foods[fodId-1]
   const {name,url,price}=foodsId
 
   const handleAddToCart = () => {
-    dispatch(addItem(foods));
+    dispatch(addItem(foodsId));
   };
+
+
+
+  const increment=()=>{
+    dispatch(incrementQuantity(foodsId.id))
+  }
 
 
   return (
@@ -40,6 +52,9 @@ function Detailse() {
       <div className='flex items-center justify-center'><span className='bg-green-600 text-white font-bold rounded-lg p-2'><span className='font-bold rounded-lg p-2 text-xl'>ریال</span>{price}</span></div>
       <div className='flex justify-center'>
       <button className='bg-green-500 w-[300px] mt-4 p-2 text-xl text-white font-bold rounded-lg hover:scale-105 duration-300' onClick={handleAddToCart}>اضافه کردن به سبد خرید</button>
+      </div>
+      <div className='flex justify-center py-2'>
+      <button className='bg-green-600 p-2 rounded text-white text-xl' onClick={increment}>+</button>
       </div>
       <div className='flex justify-center py-6'>
       </div>
